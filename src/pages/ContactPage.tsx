@@ -1,7 +1,7 @@
 // src/pages/ContactPage.tsx
 const ContactPage = () => (
   <div className="max-w-3xl mx-auto">
-    <h1 className="text-4xl font-bold mb-4">Contact Me</h1>
+    <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
     <div className="bg-white p-8 rounded-lg shadow-md space-y-4">
       <p className="text-lg text-gray-700">
         I'm always open to discussing new projects, creative ideas, or

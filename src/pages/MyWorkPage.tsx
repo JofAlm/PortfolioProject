@@ -7,12 +7,12 @@ import { type Project } from "../types";
 const MyWorkPage = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const projectsCollection = collection(db, "projects");
-
         const q = query(
           projectsCollection,
           orderBy("createdAt", "desc"),
@@ -24,7 +24,6 @@ const MyWorkPage = () => {
           ...doc.data(),
         })) as Project[];
         setProjects(projectsData);
-        // CORRECT CODE:
       } catch (error) {
         console.error("Error fetching projects: ", error);
       } finally {
@@ -39,7 +38,8 @@ const MyWorkPage = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-8 text-center">My Work</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">Our Work</h1>
+
       {projects.length === 0 && !loading ? (
         <p className="text-center text-gray-500">
           No projects have been added yet. Go to the admin page to add one!
@@ -49,7 +49,8 @@ const MyWorkPage = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300"
+              className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer"
+              onClick={() => setSelectedImage(project.imageUrl)}
             >
               <img
                 src={project.imageUrl}
@@ -62,6 +63,20 @@ const MyWorkPage = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Bild-modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Enlarged project"
+            className="max-w-full max-h-full rounded-lg shadow-lg"
+          />
         </div>
       )}
     </div>

@@ -27,7 +27,7 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/admin");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(
         "Inloggning misslyckades. Vänligen kontrollera e-post och lösenord."
       );
