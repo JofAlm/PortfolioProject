@@ -1,12 +1,12 @@
-// src/components/Navbar.tsx
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+// Props for customizing logo, auth state, and sign-out action
 type Props = {
-  logoSrc?: string; // valfritt: skicka in logobild
-  logoClassName?: string; // valfritt: CSS-klasser för loggans storlek
-  onSignOut?: () => void; // valfritt: koppla till Firebase signOut
-  isAuthed?: boolean; // valfritt: styr om Admin/Logga ut visas
+  logoSrc?: string; // Optional: logo image path
+  logoClassName?: string; // Optional: CSS classes for logo size
+  onSignOut?: () => void; // Optional: handle Firebase signOut
+  isAuthed?: boolean; // Optional: show Admin/Logout if authenticated
 };
 
 export default function Navbar({
@@ -15,11 +15,11 @@ export default function Navbar({
   onSignOut,
   isAuthed,
 }: Props) {
-  const [open, setOpen] = useState(false);
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false); // Mobile menu state
+  const btnRef = useRef<HTMLButtonElement>(null); // Reference to menu button
+  const panelRef = useRef<HTMLDivElement>(null); // Reference to mobile menu panel
 
-  // Stäng på ESC och klick utanför
+  // Close mobile menu on ESC key or outside click
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -39,22 +39,23 @@ export default function Navbar({
     };
   }, [open]);
 
+  // Base styles for navigation links
   const linkBase =
     "block px-3 py-2 rounded-lg text-sm font-medium focus:outline-none focus:ring-2";
-  const linkActive = "text-yellow-700 bg-yellow-50";
-  const linkIdle = "text-gray-700 hover:text-gray-900 hover:bg-gray-100";
+  const linkActive = "text-yellow-700 bg-yellow-50"; // Style for active link
+  const linkIdle = "text-gray-700 hover:text-gray-900 hover:bg-gray-100"; // Style for inactive link
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between">
-          {/* LOGO */}
+          {/* Logo: image or fallback text */}
           <Link to="/" className="flex items-center gap-2">
             {logoSrc ? (
               <img
                 src={logoSrc}
                 alt="Audiovisium"
-                className={logoClassName ?? "h-10 w-auto md:h-12"} // fallback om ingen prop skickas
+                className={logoClassName ?? "h-10 w-auto md:h-12"} // Default size if no prop passed
               />
             ) : (
               <span className="text-xl md:text-2xl font-bold text-yellow-600 tracking-tight">
@@ -63,7 +64,7 @@ export default function Navbar({
             )}
           </Link>
 
-          {/* DESKTOP LINKS */}
+          {/* Desktop navigation links */}
           <div className="hidden md:flex items-center gap-2">
             <NavLink
               to="/"
@@ -91,6 +92,7 @@ export default function Navbar({
               Contact
             </NavLink>
 
+            {/* Authenticated state: show Admin + Logout */}
             {isAuthed ? (
               <>
                 <NavLink
@@ -109,6 +111,7 @@ export default function Navbar({
                 </button>
               </>
             ) : (
+              // If not logged in: show Login
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -120,7 +123,7 @@ export default function Navbar({
             )}
           </div>
 
-          {/* MOBILE TOGGLE */}
+          {/* Mobile menu toggle button */}
           <button
             ref={btnRef}
             onClick={() => setOpen((v) => !v)}
@@ -165,7 +168,7 @@ export default function Navbar({
           </button>
         </div>
 
-        {/* MOBILE PANEL */}
+        {/* Mobile navigation panel */}
         <div
           id="mobile-menu"
           ref={panelRef}
@@ -203,6 +206,7 @@ export default function Navbar({
               Contact
             </NavLink>
 
+            {/* Authenticated state in mobile menu */}
             {isAuthed ? (
               <>
                 <NavLink
