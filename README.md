@@ -18,9 +18,6 @@ The platform is designed to highlight strong visuals and provide an admin interf
 - **Firebase** – authentication, Firestore, hosting, storage  
 - **GitHub + Trello** – version control & agile workflow  
 
-## 📸 Screenshots
-
-_Add one or two screenshots from the site (e.g. portfolio grid and admin panel)._  
 
 ## 🔑 Installation & Development
 
