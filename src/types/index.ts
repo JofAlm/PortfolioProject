@@ -1,4 +1,3 @@
-// src/types/index.ts
 import { Timestamp } from "firebase/firestore";
 
 export interface Project {
@@ -6,6 +5,6 @@ export interface Project {
   title: string;
   description: string;
   imageUrl: string;
-  imagePath?: string; // ← NYTT (valfritt, ex: "projects/<docId>/filnamn.jpg")
+  imagePath?: string;
   createdAt: Timestamp;
 }

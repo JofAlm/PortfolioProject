@@ -3,10 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 
 // Props for customizing logo, auth state, and sign-out action
 type Props = {
-  logoSrc?: string; // Optional: logo image path
-  logoClassName?: string; // Optional: CSS classes for logo size
-  onSignOut?: () => void; // Optional: handle Firebase signOut
-  isAuthed?: boolean; // Optional: show Admin/Logout if authenticated
+  logoSrc?: string;
+  logoClassName?: string;
+  onSignOut?: () => void;
+  isAuthed?: boolean;
 };
 
 export default function Navbar({
@@ -15,9 +15,9 @@ export default function Navbar({
   onSignOut,
   isAuthed,
 }: Props) {
-  const [open, setOpen] = useState(false); // Mobile menu state
-  const btnRef = useRef<HTMLButtonElement>(null); // Reference to menu button
-  const panelRef = useRef<HTMLDivElement>(null); // Reference to mobile menu panel
+  const [open, setOpen] = useState(false);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu on ESC key or outside click
   useEffect(() => {
@@ -42,8 +42,8 @@ export default function Navbar({
   // Base styles for navigation links
   const linkBase =
     "block px-3 py-2 rounded-lg text-sm font-medium focus:outline-none focus:ring-2";
-  const linkActive = "text-yellow-700 bg-yellow-50"; // Style for active link
-  const linkIdle = "text-gray-700 hover:text-gray-900 hover:bg-gray-100"; // Style for inactive link
+  const linkActive = "text-yellow-700 bg-yellow-50";
+  const linkIdle = "text-gray-700 hover:text-gray-900 hover:bg-gray-100";
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -107,7 +107,7 @@ export default function Navbar({
                   onClick={onSignOut}
                   className="ml-1 px-3 py-2 text-sm rounded-lg text-gray-600 hover:bg-gray-100 focus:ring-2"
                 >
-                  Logga ut
+                  Logout
                 </button>
               </>
             ) : (
@@ -118,7 +118,7 @@ export default function Navbar({
                   `${linkBase} ${isActive ? linkActive : linkIdle}`
                 }
               >
-                Logga in
+                Login
               </NavLink>
             )}
           </div>
@@ -225,7 +225,7 @@ export default function Navbar({
                   }}
                   className="w-full text-left px-3 py-2 text-sm rounded-lg text-gray-600 hover:bg-gray-100 focus:ring-2"
                 >
-                  Logga ut
+                  Logout
                 </button>
               </>
             ) : (
@@ -236,7 +236,7 @@ export default function Navbar({
                   `${linkBase} ${isActive ? linkActive : linkIdle}`
                 }
               >
-                Logga in
+                Login
               </NavLink>
             )}
           </div>

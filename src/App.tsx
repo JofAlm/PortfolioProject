@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-import MyWorkPage from "./pages/MyWorkPage";
+import StartPage from "./pages/StartPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
@@ -14,7 +14,7 @@ import AdminPage from "./pages/AdminPage";
 import EditPage from "./pages/EditPage";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useAuth } from "./auth/AuthProvider";
+import { useAuth } from "./auth/useAuth";
 
 import { useEffect } from "react";
 import { signOut } from "firebase/auth";
@@ -56,7 +56,7 @@ export default function App() {
         <main className="container mx-auto px-4 sm:px-6 py-6">
           <Routes>
             {/* Public pages */}
-            <Route path="/" element={<MyWorkPage />} />
+            <Route path="/" element={<StartPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route

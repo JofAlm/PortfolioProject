@@ -1,6 +1,5 @@
-// src/components/ProtectedRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../auth/AuthProvider";
+import { useAuth } from "../auth/useAuth";
 
 // Protects routes from unauthenticated users
 const ProtectedRoute = () => {
